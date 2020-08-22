@@ -9,6 +9,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import DataGrab from '../modules/dataGrab/index';
 
 const { Header, Sider, Content } = Layout;
 
@@ -48,7 +49,7 @@ export default function Index() {
             minHeight: 280,
           }}
         >
-          Content
+          <DataGrab />
       </Content>
       </Layout>
     </Layout>
