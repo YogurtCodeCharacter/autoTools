@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js"
+    "frontEnd": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
+    "rearEnd": "nodemon src/node/index.js",
+    "bothStart": "npm run frontEnd & npm run rearEnd"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +42,10 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "antd": "^4.5.4",
+    "axios": "^0.20.0",
+    "koa": "^2.13.0",
+    "koa-router": "^9.4.0",
+    "koa2-cors": "^2.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

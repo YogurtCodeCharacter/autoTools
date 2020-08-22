@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Row, Col, Input, Button, Modal, Spin } from 'antd';
+import axios from 'axios';
+import { Row, Col, Input, Button, Modal, Spin, Tag, Popover } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';;
 import styles from './index.less';
 
 
@@ -8,6 +10,7 @@ export default function Index() {
     const [appList, setAppList] = useState([]);
     const [loading, setLoad] = useState(false);
     const [fileReady, setFileHide] = useState(false);
+    const [downData, setDownData] = useState(null);
 
 
     useEffect(() => {
@@ -15,11 +18,26 @@ export default function Index() {
     }, []);
 
     const onClick = () => {
-        const reader = new FileReader();
+        const res = axios.get('http://localhost:3000/getTemplate');
 
-        console.log('点击了生成', fs);
         setLoad(true);
+
+        setTimeout(() => {
+            res.then(({ data: { data, success } }) => {
+                if (success) {
+                    setLoad(false);
+                    setFileHide(true)
+                    setDownData(data);
+                }
+            });
+        }, 3000);
+
+
         // TODO: 获取api.doc -> 读取文件 -> 存入内存
+    }
+
+    const downFile = () => {
+        console.log('点击了下载');
     }
 
     return <div className={styles.box}>
@@ -37,5 +55,10 @@ export default function Index() {
 
             </Col>
         </Row>
+        {
+            fileReady ? <div className={styles.fileCss}>
+                <span>文件<Popover content="点击文件进行下载"><QuestionCircleOutlined /></Popover>:</span><Tag color="success" className={styles.tag}  onClick={downFile}>server.js</Tag>
+            </div> : null
+        }
     </div>
 }
