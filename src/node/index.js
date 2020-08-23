@@ -23,7 +23,7 @@ router.get('/getTemplate', async function (ctx) {
         data: null
     }
     res = await new Promise((resolve, reject) => {
-        fs.readFile(`${path.resolve()}/src/template/get/index.js`, (err, data) => {
+        fs.readFile(`${path.resolve()}/src/template/get/index.js`, 'utf-8', (err, data) => {
             if (!err) {
                 res.data = data;
                 res.text = '成功';
@@ -45,7 +45,7 @@ router.get('/postTemplate', async function (ctx) {
         data: null
     }
     res = await new Promise((resolve, reject) => {
-        fs.readFile(`${path.resolve()}/src/template/post/index.js`, (err, data) => {
+        fs.readFile(`${path.resolve()}/src/template/post/index.js`, 'utf-8', (err, data) => {
             if (!err) {
                 res.data = data;
                 res.text = '成功';

@@ -37,7 +37,17 @@ export default function Index() {
     }
 
     const downFile = () => {
-        console.log('点击了下载');
+        
+        let blob = new Blob([downData], {
+            type: 'text/plain'
+        });
+
+        console.log('点击了下载', downData, blob);
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'server.js';
+        link.click();
     }
 
     return <div className={styles.box}>
