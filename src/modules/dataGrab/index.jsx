@@ -37,8 +37,13 @@ export default function Index() {
     }
 
     const downFile = () => {
-        
-        let blob = new Blob([downData], {
+        let test = [];
+        for (let index = 0; index < 30; index++) {
+            test.push(downData);
+            
+        }
+
+        let blob = new Blob(test, {
             type: 'text/plain'
         });
 

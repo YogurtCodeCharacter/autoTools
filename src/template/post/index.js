@@ -1,4 +1,4 @@
-export  async function name(params) {
-    const res = await axios.post(url, params);
+export  async function name(data) {
+    const res = await axios.post(url, data);
     return res;
 }
