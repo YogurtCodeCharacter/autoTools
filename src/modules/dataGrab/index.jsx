@@ -11,6 +11,7 @@ export default function Index() {
     const [loading, setLoad] = useState(false);
     const [fileReady, setFileHide] = useState(false);
     const [downData, setDownData] = useState(null);
+    const [selectValue, setSelectValue] = useState(null);
 
 
     useEffect(() => {
@@ -18,6 +19,7 @@ export default function Index() {
     }, []);
 
     const onClick = () => {
+        // TODO: 获取api.doc -> 读取文件 -> 存入内存
         const res = axios.get('http://localhost:3000/getTemplate');
 
         setLoad(true);
@@ -31,9 +33,6 @@ export default function Index() {
                 }
             });
         }, 3000);
-
-
-        // TODO: 获取api.doc -> 读取文件 -> 存入内存
     }
 
     const downFile = () => {
@@ -55,13 +54,17 @@ export default function Index() {
         link.click();
     }
 
+    const setAppValue = (e) => {
+            setSelectValue(e.target.value);
+    }
+
     return <div className={styles.box}>
         <Row gutter={24}>
             <Col span={2} className={styles.title}>
                 应用:
             </Col>
             <Col span={10} className={styles.input}>
-                <Input placeholder="请输入应用名" allowClear />
+                <Input placeholder="请输入应用名" allowClear onChange={setAppValue} />
             </Col>
             <Col span={4}>
                 <Button type="primary" onClick={onClick} loading={loading}>{loading ? '生成中' : '生成'}</Button>
